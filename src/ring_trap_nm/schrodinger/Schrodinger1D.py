@@ -47,7 +47,7 @@ class Schrodinger1D:
 
     def get_expectation(self, t, y, operator):
         """return expectation value of `operator`"""
-        return np.sum(y.conj()*operator(t,y))
+        return np.sum(np.abs(y.conj()*operator(t,y)))
 
        
     def get_standard_deviation(self, t, y, \
