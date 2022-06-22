@@ -55,18 +55,8 @@ class Objective(Schrodinger):
         V = self.V0
         return np.std(np.diff(V))
 
-    
-    def compute_objective(self, V):
-        """
-        Returns the object value for potential V.
-        """
-        # ensure V dims
-        if V.shape[0] != self.N or len(V.shape) > 1:
-            raise ValueError("provided V wrong shape in objective")
-        
-        # set V0
-        self.V0 = V
 
+    def compute_objective_vals(self):
         # evolve state
         res = self.evolve(self.y0, self.tf)
         ts, ys = res.t, res.y
@@ -79,6 +69,23 @@ class Objective(Schrodinger):
         objective_vals = np.zeros(len(self.objective_functions))
         for idx, objective in enumerate(self.objective_functions):
             objective_vals[idx] = getattr(self, objective)(tf, yf)
+        
+        return objective_vals
+
+   
+    def compute_objective(self, V):
+        """
+        Returns the object value for potential V.
+        """
+        # ensure V dims
+        if V.shape[0] != self.N or len(V.shape) > 1:
+            raise ValueError("provided V wrong shape in objective")
+        
+        # set V0
+        self.V0 = V
+        
+        # get objective values
+        objective_vals = self.compute_objective_vals()
 
         # weight and return
         return self.lambs.dot(objective_vals)
