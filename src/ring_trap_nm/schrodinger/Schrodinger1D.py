@@ -1,5 +1,7 @@
 import numpy as np, matplotlib.pyplot as plt
+from numpy.fft import fft, ifft
 from scipy.integrate import solve_ivp
+
 
 class Schrodinger1D:
     def __init__(self, N=100, xs=None, V0=0.0):
@@ -29,7 +31,7 @@ class Schrodinger1D:
         if n < 1:
             raise ValueError("n to small")
 
-        return np.fft.ifft(np.fft(y) * (1j*self.ks)**n)
+        return ifft(fft(y) * (1j*self.ks)**n)
 
     def get_V(self, t):
         """return V(t) -- the external potential"""
