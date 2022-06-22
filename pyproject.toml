@@ -8,4 +8,4 @@ description = "We use [Nelder-Mead](https://en.wikipedia.org/wiki/Nelder%E2%80%9
 readme = "README.md"
 
 [build-system]
-requires = []
+requires = ["setuptools","wheel","numpy","scipy"]
