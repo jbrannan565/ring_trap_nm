@@ -11,7 +11,7 @@ class Objective(Schrodinger):
     Attributes
     ----------
     objective_functions : tuple
-        objective functions of form f(t,y)
+        sting name of local methods to be used as objective functions
     y0 : np.array
         initial quantum state
     tf : float
@@ -69,7 +69,7 @@ class Objective(Schrodinger):
         # get objective values from objective functionns
         objective_vals = np.zeros(len(self.objective_functions))
         for idx, objective in enumerate(self.objective_functions):
-            objective_vals[idx] = objective(yf, tf)
+            objective_vals[idx] = getattr(self, objective)(yf, tf)
 
         # weight and return
         return self.lambs.dot(objective_vals)

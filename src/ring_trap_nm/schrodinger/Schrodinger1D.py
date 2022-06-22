@@ -7,13 +7,14 @@ class Schrodinger1D:
         self.m = 0.5
         
         if xs is None:
-            self.xs = np.linspace(-2*pi, 2*pi, N)
+            self.xs = np.linspace(-2*np.pi, 2*np.pi, N)
         else:
             self.xs = xs
 
         self.dx = None
         self.ks = 2*np.pi*np.fft.fftfreq(N, self.get_dx())
         self.V0 = V0
+        self.N = N
         
         
     def get_dx(self):
