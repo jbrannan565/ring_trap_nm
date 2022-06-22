@@ -3,6 +3,29 @@ from ..schrodinger.Schrodinger1D import Schrodinger1D as Schrodinger
 
 
 class Objective(Schrodinger):
+    """
+    A class that represents an optimization objective
+
+    ...
+
+    Attributes
+    ----------
+    objective_functions : tuple
+        objective functions of form f(t,y)
+    y0 : np.array
+        initial quantum state
+    tf : float
+        time to evolve to
+    lambs : tuple
+        list of weights for objective_functions in final weighted sum
+    kwargs : dict
+        kwargs for Schrodinger1D
+
+    Methods
+    -------
+    compute_objective(V)
+        Returns the object value for potential V.
+    """
     def __init__(self, objective_functions, y0=None, tf=1.0, \
         lambs=None, **kwargs):
         super().__init__(**kwargs)
@@ -22,7 +45,7 @@ class Objective(Schrodinger):
         if lambs is None:
             self.lambs = np.ones(len(objective_functions))
         else:
-            self.lambs = lambs
+            self.lambs = np.array(lambs)
 
     
     def compute_objective(self, V):
@@ -50,6 +73,3 @@ class Objective(Schrodinger):
 
         # weight and return
         return self.lambs.dot(objective_vals)
-
-
-        raise NotImplementedError("get_objective not yet implemented!")
