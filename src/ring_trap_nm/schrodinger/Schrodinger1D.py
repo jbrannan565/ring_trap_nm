@@ -57,8 +57,7 @@ class Schrodinger1D:
         - math::
             \sqrt{square_expectation_operator - expectation_operator^2}
         """
-        return np.sqrt(square_expectation_operator(t, y) \
-            - expectation_operator(t, y)**2)
+        return np.sqrt(square_expectation_operator(t, y) - expectation_operator(t, y)**2)
 
         
     def get_Ey(self, t, y):
@@ -132,7 +131,7 @@ class Schrodinger1D:
     def get_p_deviation(self, t, y):
         """return standard deviation of momentum operator `p`"""
         return self.get_standard_deviation(t, y, \
-            self.get_p_expectation, self.get_p_squared)
+            self.get_p_expectation, self.get_p_squared_expectation)
 
     
     def evolve(self, y0, tf, **kwargs):
