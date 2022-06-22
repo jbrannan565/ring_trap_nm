@@ -77,7 +77,7 @@ class Schrodinger1D:
     
     def get_E_squared(self, t, y):
         """
-        Returns expectation of Hamiltonian squared:
+        Returns Hamiltonian squared acting on y:
         .. math::
             \lang \hat{E}^2 \rang &= - \hbar \partial / \partial t
             &= H^2
@@ -88,17 +88,21 @@ class Schrodinger1D:
                 + V^2)
         """
         V = self.get_V(t)
-        ts = np.zeros(3)
-        ts[0] = (self.hbar / self.m / 2)**2 * self.get_n_dydx(y, n=4)
-        ts[1]= (-self.hbar/self.m) * V * y
-        ts[2]= V**2 * y
-        return np.sum(ts)
+        t0 = (self.hbar / self.m / 2)**2 * self.get_n_dydx(y, n=4)
+        t1 = (-self.hbar/self.m) * V * y
+        t2 = V**2 * y
+        return t0 + t1 + t2
+
+
+    def get_E_squared_expectation(self, t, y):
+        """return expecation value of squared Hamiltonian operator"""
+        return self.get_expectation(t, y, self.get_E_squared)
 
     
     def get_E_deviation(self, t, y):
         """return standard deviation of Hamiltonian operator"""
         return self.get_standard_deviation(t, y, \
-            self.get_E_expectation, self.get_E_squared)
+            self.get_E_expectation, self.get_E_squared_expectation)
     
     
     def get_p(self, t, y):
@@ -116,8 +120,13 @@ class Schrodinger1D:
     
     
     def get_p_squared(self, t, y):
-        """return expextation value of momentum operator squared"""
-        return -self.hbar*self.get_ddyddx(y)
+        """return momentum operator squared acting on y"""
+        return -self.hbar*self.get_n_dydx(y, n=2)
+
+    
+    def get_p_squared_expectation(self, t, y):
+        """return expectation value of squared momentum operator"""
+        return self.get_expectation(t, y, self.get_p_squared)
     
     
     def get_p_deviation(self, t, y):
