@@ -50,6 +50,12 @@ class Objective(Schrodinger):
             self.lambs = np.array(lambs)
 
     
+    def smoothness(self, t, y):
+        """return a measure of the smoothness of self.V0"""
+        V = self.V0
+        return np.std(V) / np.abs(np.mean(np.diff(V)))
+
+    
     def compute_objective(self, V):
         """
         Returns the object value for potential V.
