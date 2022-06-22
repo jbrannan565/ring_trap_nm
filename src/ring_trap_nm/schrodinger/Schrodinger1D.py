@@ -57,7 +57,7 @@ class Schrodinger1D:
         - math::
             \sqrt{square_expectation_operator - expectation_operator^2}
         """
-        return np.sqrt(square_expectation_operator(t, y) - expectation_operator(t, y)**2)
+        return np.sqrt(np.abs(square_expectation_operator(t, y) - expectation_operator(t, y)**2))
 
         
     def get_Ey(self, t, y):
@@ -81,15 +81,15 @@ class Schrodinger1D:
             \lang \hat{E}^2 \rang &= - \hbar \partial / \partial t
             &= H^2
 
-            -(-\hbar / m / 2 \cdot d^2/dx^2 + V)^2 
-            &= ([\hbar / m / 2]^2 d^4/dx^4 \\
-                + 2V -\hbar / 2 / m d^2/dx^2 \\
-                + V^2)
+            (-\hbar^2 / m / 2 \cdot d^2/dx^2 + V)^2 y
+            &= ([\hbar^2 / m / 2]^2 d^4/dx^4 \\
+                - V \hbar^2 / m d^2/dx^2 \\
+                + V^2)y
         """
         V = self.get_V(t)
-        t0 = (self.hbar / self.m / 2)**2 * self.get_n_dydx(y, n=4)
-        t1 = (-self.hbar/self.m) * V * y
-        t2 = V**2 * y
+        t0 = (self.hbar**2 / self.m / 2)**2 * self.get_n_dydx(y, n=4)
+        t1 = (-self.hbar/self.m) * np.diag(V).dot(y)
+        t2 = np.diag(np.diag(V).dot(V)).dot(y)
         return t0 + t1 + t2
 
 
