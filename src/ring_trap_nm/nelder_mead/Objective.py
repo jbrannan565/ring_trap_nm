@@ -53,7 +53,7 @@ class Objective(Schrodinger):
     def get_V_smoothness(self, t, y):
         """return a measure of the smoothness of self.V0"""
         V = self.V0
-        return np.std(V) / np.abs(np.mean(np.diff(V)))
+        return np.std(V)
 
     
     def compute_objective(self, V):
