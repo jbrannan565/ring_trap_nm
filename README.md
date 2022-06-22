@@ -11,6 +11,3 @@ First, we seek minimum energy with momentum $k$.
     - [ ] nelder_mead.Objective
 - [ ] schrodinger
     - add GPE term to get_dydt
-- [ ] nelder_mead
-  - [ ] Objective.smoothing
-    - A method that measures the smoothness of an external potential V
