@@ -84,4 +84,4 @@ class Objective(Schrodinger):
     
 
     def solve(self, method="Nelder-Mead", **kwargs):
-        return minimize(fun=self.compute_objective, x0=self.y0)
+        return minimize(fun=self.compute_objective, x0=self.y0, method=method, **kwargs)
