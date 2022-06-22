@@ -72,7 +72,7 @@ class Objective(Schrodinger):
         ts, ys = res.t, res.y
 
         # get final state
-        yf = ys[-1,:]
+        yf = ys[:,-1]
         tf = ts[-1]
 
         # get objective values from objective functionns
