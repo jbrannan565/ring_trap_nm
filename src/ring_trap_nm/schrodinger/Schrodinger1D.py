@@ -97,7 +97,7 @@ class Schrodinger1D:
     
     def get_E_deviation(self, t, y):
         """return standard deviation of Hamiltonian operator"""
-        return self.get_expectation(t, y, \
+        return self.get_standard_deviation(t, y, \
             self.get_E_expectation, self.get_E_squared)
     
     
@@ -122,7 +122,7 @@ class Schrodinger1D:
     
     def get_p_deviation(self, t, y):
         """return standard deviation of momentum operator `p`"""
-        return self.get_expectation(t, y, \
+        return self.get_standard_deviation(t, y, \
             self.get_p_expectation, self.get_p_squared)
 
     
