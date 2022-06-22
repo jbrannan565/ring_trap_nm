@@ -1,4 +1,6 @@
 import numpy as np
+from scipy.optimize import minimize
+
 from ..schrodinger.Schrodinger1D import Schrodinger1D as Schrodinger
 
 
@@ -73,3 +75,7 @@ class Objective(Schrodinger):
 
         # weight and return
         return self.lambs.dot(objective_vals)
+    
+
+    def solve(self, method="Nelder-Mead", **kwargs):
+        return minimize(fun=self.compute_objective, x0=self.y0)
