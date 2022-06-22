@@ -68,7 +68,8 @@ class Objective(Schrodinger):
         self.V0 = V
 
         # evolve state
-        ys, ts = self.evolve(self.y0, self.tf)
+        res = self.evolve(self.y0, self.tf)
+        ts, ys = res.t, res.y
 
         # get final state
         yf = ys[-1,:]
@@ -77,7 +78,7 @@ class Objective(Schrodinger):
         # get objective values from objective functionns
         objective_vals = np.zeros(len(self.objective_functions))
         for idx, objective in enumerate(self.objective_functions):
-            objective_vals[idx] = getattr(self, objective)(yf, tf)
+            objective_vals[idx] = getattr(self, objective)(tf, yf)
 
         # weight and return
         return self.lambs.dot(objective_vals)
