@@ -84,5 +84,10 @@ class Objective(Schrodinger):
         return self.lambs.dot(objective_vals)
     
 
-    def solve(self, method="Nelder-Mead", **kwargs):
-        return minimize(fun=self.compute_objective, x0=self.y0, method=method, **kwargs)
+    def solve(self, method="Nelder-Mead", options=None, **kwargs):
+        if options is None:
+            options = {
+                "maxiter": int(1e5),
+                "disp": True
+            }
+        return minimize(fun=self.compute_objective, x0=self.y0, method=method, options=options, **kwargs)
