@@ -1,3 +1,11 @@
+[project]
+name = "ring_trap_nm"
+version = "0.0.1"
+authors = [
+    { name="Jared Brannan", email="j.brannan@protonmail.com" },
+]
+description = "We use [Nelder-Mead](https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method) to find potentials that produce a state with desired expectation values admitting small standard deviations."
+readme = "README.md"
+
 [build-system]
-requires = ["setuptools>=42", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = []
