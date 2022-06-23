@@ -37,7 +37,7 @@ class Objective(Schrodinger):
 
         # handle default y0
         if y0 is None:
-            self.y0 = np.ones(self.N)
+            self.y0 = np.zeros(self.N)
         else:
             self.y0 = y0
         
