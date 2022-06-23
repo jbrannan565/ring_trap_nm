@@ -11,6 +11,7 @@ First, we seek minimum energy with momentum $k$.
     - [ ] nelder_mead.Objective
 - [ ] schrodinger
     - add GPE term to get_dydt
+- [ ] implement a distance from desired expectation value function
 - [ ] Hyperparameters
   - [ ] Select a method for Hyperparameter tuning
   - [ ] implement method
