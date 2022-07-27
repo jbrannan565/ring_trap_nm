@@ -14,6 +14,8 @@ class Objective(Schrodinger):
     ----------
     objective_functions : tuple
         sting name of local methods to be used as objective functions
+    desired_p: float
+        the p we'd like to get close to
     y0 : np.array
         initial quantum state
     tf : float
@@ -28,12 +30,15 @@ class Objective(Schrodinger):
     compute_objective(V)
         Returns the object value for potential V.
     """
-    def __init__(self, objective_functions, y0=None, tf=1.0, \
+    def __init__(self, objective_functions, desired_p=2*np.pi, y0=None, tf=1.0, \
         lambs=None, **kwargs):
         super().__init__(**kwargs)
 
         # set objective functions
         self.objective_functions = objective_functions
+    
+        # set desired p
+        self.desired_p = desired_p
 
         # handle default y0
         if y0 is None:
@@ -56,6 +61,11 @@ class Objective(Schrodinger):
         return np.std(np.diff(V))
 
 
+    def get_dist_p_expectation(self, y, t):
+        """get the distance between the expectation value of p and `desired_p`"""
+        return np.abs(self.get_p_expectation(y, t) - self.desired_p)
+
+
     def compute_objective_vals(self):
         # evolve state
         res = self.evolve(self.y0, self.tf)
@@ -72,7 +82,7 @@ class Objective(Schrodinger):
         
         return objective_vals
 
-   
+
     def compute_objective(self, V):
         """
         Returns the object value for potential V.
