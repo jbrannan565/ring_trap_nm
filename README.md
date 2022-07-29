@@ -14,7 +14,7 @@ First, we seek minimum energy with momentum $k$.
 - [ ] nelder_mead
   - [x] implement a distance from desired expectation value function
   - [x] try adaptive option in scipy minimize
-  - [ ] explore space of init potentials
+  - [ ] explore space of init potentialS
 - [ ] Hyperparameters
   - [x] Select a method for Hyperparameter tuning
   - [x] implement method
