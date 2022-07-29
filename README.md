@@ -10,10 +10,10 @@ First, we seek minimum energy with momentum $k$.
     - [ ] schrodinger.Schrodinger1D
     - [ ] nelder_mead.Objective
 - [ ] schrodinger
-    - add GPE term to get_dydt
+    - [ ] add GPE term to get_dydt
 - [ ] nelder_mead
-  - [ ] implement a distance from desired expectation value function
+  - [x] implement a distance from desired expectation value function
   - [ ] try adaptive option in scipy minimize
 - [ ] Hyperparameters
-  - [ ] Select a method for Hyperparameter tuning
-  - [ ] implement method
+  - [x] Select a method for Hyperparameter tuning
+  - [x] implement method
