@@ -13,7 +13,8 @@ First, we seek minimum energy with momentum $k$.
     - [ ] add GPE term to get_dydt
 - [ ] nelder_mead
   - [x] implement a distance from desired expectation value function
-  - [ ] try adaptive option in scipy minimize
+  - [x] try adaptive option in scipy minimize
+  - [ ] explore space of init potentials
 - [ ] Hyperparameters
   - [x] Select a method for Hyperparameter tuning
   - [x] implement method
